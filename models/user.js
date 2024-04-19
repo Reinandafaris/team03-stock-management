@@ -29,13 +29,9 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.ENUM('superadmin', 'admin', 'user'),
 				allowNull: false,
 			},
-			companyId: DataTypes.STRING,
+			companyId: DataTypes.INTEGER,
 			imageUrl: DataTypes.ARRAY(DataTypes.TEXT),
 			imageId: DataTypes.ARRAY(DataTypes.TEXT),
-		},
-		{
-			sequelize,
-			modelName: 'User',
 		},
 		{
 			sequelize,

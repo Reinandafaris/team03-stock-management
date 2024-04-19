@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Auth.init(
 		{
-			userId: DataTypes.STRING,
+			userId: { type: DataTypes.STRING, allowNull: false },
 			email: {
 				type: DataTypes.STRING,
 				unique: {
@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
 					isEmail: true,
 				},
 			},
-			password: DataTypes.STRING,
-			confirmPassword: DataTypes.STRING,
+			password: { type: DataTypes.STRING, allowNull: false },
+			confirmPassword: { type: DataTypes.STRING, allowNull: false },
 		},
 		{
 			sequelize,
