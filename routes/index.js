@@ -7,6 +7,6 @@ const stockRouter = require ("./stockRouter");
 router.use("/api/v1", authRouter);
 router.use("/api/v1/company", companyRouter);
 router.use("/api/v1/stock", stockRouter);
-router.use("/api/v1/items", itemRouter);
+// router.use("/api/v1/items", stockRouter);
 
 module.exports = router;
