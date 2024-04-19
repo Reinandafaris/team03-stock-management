@@ -4,7 +4,7 @@ const authRouter = require('./authRouter');
 const companyRouter = require('./companyRouter');
 const stockRouter = require('./stockRouter');
 const itemRouter = require('./itemRouter');
-const categoryRouter = require('./categoryRouter');
+const categoryRouter = require('./categoryItemRouter');
 
 router.use('/api/v1', authRouter);
 router.use('/api/v1/company', companyRouter);
