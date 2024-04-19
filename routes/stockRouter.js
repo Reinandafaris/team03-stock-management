@@ -2,9 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
-const {findStock} = require("../controllers/stockControllers");
+const {findStock, createStock} = require("../controllers/stockControllers");
 
 router.get("/", findStock);
-router.post("/create", stockController.createStock);
+router.post("/create", createStock);
 
 module.exports = router;

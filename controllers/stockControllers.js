@@ -21,7 +21,7 @@ const createStock = async (req, res, next) => {
     const { companyId, itemId, stock } = req.body;
 
     const stocks = await Stock.create({
-      name,
+        companyId, itemId, stock
     });
 
     res.status(201).json({
