@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const createHttpError = require('http-errors');
-const { User, Auth, sequelize } = require('../../databases/models');
+const { User, Auth, sequelize } = require('../../models');
 const { randomUUID } = require('crypto');
-const handleUploadImage = require('../../utils/handle_upload');
+// const handleUploadImage = require('../../utils/handle_upload');
 
 const register = async (req, res, next) => {
 	try {

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 				},
 			});
 
-			User.belongsTo(models.Company, {
+			User.belongsTo(models.Companies, {
 				foreignKey: {
 					name: 'companyId',
 				},
