@@ -1,3 +1,6 @@
+const { Item } = require("../models");
+const { Op, Sequelize } = require("sequelize");
+
 const getItems = async (req, res) => {
   try {
     const search = req.query.search || "";
@@ -37,4 +40,47 @@ const getItems = async (req, res) => {
   }
 };
 
-module.exports = { getItems };
+const createItem = async (req, res) => {
+  try {
+    const { categoryId, name, price } = req.body;
+    const files = req.files;
+
+    const images = {
+      imagesUrl: [],
+      imagesId: [],
+    };
+
+    if (files) {
+      const { imagesUrl, imagesId } = await handleUploadImage(files);
+
+      images.imagesUrl = imagesUrl;
+      images.imagesId = imagesId;
+    }
+
+    const newItem = await Item.create({
+      id: randomUUID(),
+      name,
+      categoryId,
+      price,
+      imageUrl: images.imagesUrl,
+      imageId: images.imagesId,
+    });
+
+    res.status(201).json({
+      status: true,
+      message: "create user successfully!",
+      data: {
+        item: {
+          ...newItem,
+        },
+      },
+    });
+  } catch (error) {
+    next(createHttpError(500, { message: error.message }));
+  }
+};
+
+module.exports = {
+  getItems,
+  createItem,
+};
