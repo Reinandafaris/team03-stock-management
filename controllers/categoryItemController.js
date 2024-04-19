@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const {CategoryItems} = require("../models");
+const { CategoryItems } = require("../models");
 
 const findCategory = async (req, res, next) => {
   try {
@@ -21,13 +21,11 @@ const createCategory = async (req, res, next) => {
     const { name } = req.body;
     console.log("masukk");
 
-    const category = await CategoryItems.create(
-      name,
-    );
+    const category = await CategoryItems.create(name);
     res.status(201).json({
       status: "success",
       data: {
-        ...category,
+        category,
       },
     });
   } catch (error) {
@@ -36,6 +34,6 @@ const createCategory = async (req, res, next) => {
 };
 
 module.exports = {
-    findCategory,
-    createCategory
-}
+  findCategory,
+  createCategory,
+};
