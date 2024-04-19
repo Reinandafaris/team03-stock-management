@@ -35,7 +35,59 @@ const createCompany = async (req, res, next) => {
   }
 };
 
+const updateCompany = async (req, res, next) => {
+  const { name } = req.body;
+  try {
+    await Companies.update(
+      {
+        name,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    res.status(200).json({
+      status: "Success",
+      message: "sukses update company",
+    });
+  } catch (error) {
+    next(createHttpError(400, { message: error.message }));
+  }
+};
+
+const deleteCompany = async (req, res, next) => {
+  try {
+    const company = await Companies.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!company) {
+      next(new ApiError("company id tersebut gak ada", 404));
+    }
+
+    await company.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.status(200).json({
+      status: "Success",
+      message: "sukses delete company",
+    });
+  } catch (error) {
+    next(createHttpError(500, { message: error.message }));
+  }
+};
+
 module.exports = {
   findCompanies,
   createCompany,
+  updateCompany,
+  deleteCompany,
 };
