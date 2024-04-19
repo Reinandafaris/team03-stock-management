@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const {CategoryItems} = require("../models");
+const { CategoryItems } = require("../models");
 
 const findCategory = async (req, res, next) => {
   try {
@@ -36,6 +36,6 @@ const createCategory = async (req, res, next) => {
 };
 
 module.exports = {
-    findCategory,
-    createCategory
-}
+  findCategory,
+  createCategory,
+};
