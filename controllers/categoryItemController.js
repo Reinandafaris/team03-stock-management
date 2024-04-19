@@ -21,13 +21,13 @@ const createCategory = async (req, res, next) => {
     const { name } = req.body;
     console.log("masukk");
 
-    const category = await CategoryItems.create(
+    const category = await CategoryItems.create({
       name,
-    );
+  });
     res.status(201).json({
       status: "success",
       data: {
-        ...category,
+        category,
       },
     });
   } catch (error) {
