@@ -6,11 +6,12 @@ module.exports = {
 			id: {
 				allowNull: false,
 				primaryKey: true,
-				type: Sequelize.STRING,
+				autoIncrement: true,
+				type: Sequelize.INTEGER,
 			},
 			userId: {
 				allowNull: false,
-				type: Sequelize.STRING,
+				type: Sequelize.INTEGER,
 			},
 			email: {
 				type: Sequelize.STRING,
