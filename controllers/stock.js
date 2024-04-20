@@ -1,15 +1,37 @@
 const createHttpError = require('http-errors');
 const { Stock } = require('../models');
+const { randomUUID } = require('crypto');
 
-const findStock = async (req, res, next) => {
+const getAllStock = async (req, res, next) => {
 	try {
-		const stocks = await Stock.findAll();
+		const { count, rows } = await CategoryItems.findAndCountAll({
+			where: {
+				name: {
+					[Op.iLike]: `%${search}%`,
+				},
+			},
+			order: [[Sequelize.col('stock'), 'ASC']],
+			offset,
+			limit,
+		});
+
+		const search = req.query.search || '';
+		const page = parseInt(req.query.page) || 1;
+		const limit = parseInt(req.query.limit) || 10;
+		const offset = (page - 1) * limit;
 
 		res.status(200).json({
-			status: 'Success',
-			data: {
-				stocks,
+			status: true,
+			message: 'get all stock successfully!',
+			pagination: {
+				totalItems: count,
+				totalPages: Math.ceil(count / limit),
+				currentPage: +page,
+				pageItems: rows.length,
+				nextPage: page < Math.ceil(count / limit) ? page + 1 : null,
+				prevPage: page > 1 ? page - 1 : null,
 			},
+			data: rows,
 		});
 	} catch (error) {
 		next(createHttpError(400, { message: error.message }));
@@ -21,15 +43,16 @@ const createStock = async (req, res, next) => {
 		const { companyId, itemId, stock } = req.body;
 
 		const stocks = await Stock.create({
+			id: randomUUID(),
 			companyId,
 			itemId,
 			stock,
 		});
 
 		res.status(201).json({
-			status: 'success',
+			status: true,
 			data: {
-				stock,
+				stocks,
 			},
 		});
 	} catch (error) {
@@ -53,7 +76,7 @@ const updateStock = async (req, res, next) => {
 		);
 
 		res.status(200).json({
-			status: 'Success',
+			status: true,
 			message: 'update stock is success',
 		});
 	} catch (error) {
@@ -63,7 +86,7 @@ const updateStock = async (req, res, next) => {
 
 const deleteStock = async (req, res, next) => {
 	try {
-		const stock = await Stock.findOne({
+		const stock = await Stock.findByPk({
 			where: {
 				id: req.params.id,
 			},
@@ -80,7 +103,7 @@ const deleteStock = async (req, res, next) => {
 		});
 
 		res.status(200).json({
-			status: 'Success',
+			status: true,
 			message: 'delete stock is success',
 		});
 	} catch (error) {
@@ -89,7 +112,7 @@ const deleteStock = async (req, res, next) => {
 };
 
 module.exports = {
-	findStock,
+	getAllStock,
 	createStock,
 	updateStock,
 	deleteStock,
