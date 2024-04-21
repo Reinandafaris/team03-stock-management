@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const createHttpError = require('http-errors');
 const handleUploadImage = require('../utils/handleUpload');
+const imageKit = require('../libs/imageKit');
 const { User, Auth, sequelize } = require('../models');
 const { Op, Sequelize } = require('sequelize');
 const { randomUUID } = require('crypto');
@@ -56,7 +57,14 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
 	try {
-		const { email, password, confirmPassword, name, role, companyId } = req.body;
+		const { email, password, confirmPassword, name, role } = req.body;
+
+		let companyId = req.body.companyId;
+		if (req.body.role === 'superadmin') {
+			if (companyId) {
+				companyId = null;
+			}
+		}
 
 		const files = req.files;
 
@@ -231,7 +239,15 @@ const updateUser = async (req, res, next) => {
 			return next(createHttpError(404, 'user not found'));
 		}
 
-		const { email, password, confirmPassword, name, role, companyId } = req.body;
+		const { email, password, confirmPassword, name, role } = req.body;
+
+		let companyId = req.body.companyId;
+		if (req.body.role === 'superadmin') {
+			if (companyId) {
+				companyId = null;
+			}
+		}
+
 		const files = req.files;
 
 		const images = {
@@ -248,6 +264,10 @@ const updateUser = async (req, res, next) => {
 			const { imagesUrl, imagesId } = await handleUploadImage(files);
 			images.imagesUrl = imagesUrl;
 			images.imagesId = imagesId;
+
+			if (user.imageId.length !== 0) {
+				await imageKit.deleteFile(user.imageId[0]);
+			}
 		}
 
 		const transaction = await sequelize.transaction();
@@ -318,6 +338,10 @@ const deletedUser = async (req, res, next) => {
 			include: ['Auth'],
 		});
 
+		if (user.imageId.length !== 0) {
+			await imageKit.deleteFile(user.imageId[0]);
+		}
+
 		const authId = user.Auth.id;
 
 		const transaction = await sequelize.transaction();
@@ -341,6 +365,7 @@ const deletedUser = async (req, res, next) => {
 			);
 
 			await transaction.commit();
+
 			res.status(201).json({
 				status: true,
 				message: 'user deleted successfully',

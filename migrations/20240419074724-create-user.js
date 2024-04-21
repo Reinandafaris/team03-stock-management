@@ -17,7 +17,7 @@ module.exports = {
 			},
 			role: {
 				allowNull: false,
-				type: Sequelize.ENUM('superadmin', 'admin', 'user'),
+				type: Sequelize.ENUM('superadmin', 'admin', 'member'),
 			},
 
 			imageUrl: {
