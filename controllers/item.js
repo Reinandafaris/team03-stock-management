@@ -1,7 +1,8 @@
 const { Item } = require('../models');
 const { Op, Sequelize } = require('sequelize');
+const { randomUUID } = require('crypto');
 
-const getItems = async (req, res) => {
+const getAllItem = async (req, res) => {
 	try {
 		const search = req.query.search || '';
 		const page = parseInt(req.query.page) || 1;
@@ -33,10 +34,7 @@ const getItems = async (req, res) => {
 			data: rows,
 		});
 	} catch (error) {
-		res.status(500).json({
-			status: false,
-			message: error.message,
-		});
+		next(createHttpError(500, { message: error.message }));
 	}
 };
 
@@ -57,7 +55,7 @@ const createItem = async (req, res) => {
 			images.imagesId = imagesId;
 		}
 
-		const newItem = await Item.create({
+		const item = await Item.create({
 			id: randomUUID(),
 			name,
 			categoryId,
@@ -70,9 +68,7 @@ const createItem = async (req, res) => {
 			status: true,
 			message: 'create user successfully!',
 			data: {
-				item: {
-					...newItem,
-				},
+				item,
 			},
 		});
 	} catch (error) {
@@ -81,6 +77,6 @@ const createItem = async (req, res) => {
 };
 
 module.exports = {
-	getItems,
+	getAllItem,
 	createItem,
 };

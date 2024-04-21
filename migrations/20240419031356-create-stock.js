@@ -4,17 +4,22 @@ module.exports = {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.createTable('Stocks', {
 			id: {
-				allowNull: false,
-				autoIncrement: true,
 				primaryKey: true,
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
+			companyId: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
+			itemId: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
+			stock: {
+				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
-			companyId: { type: Sequelize.INTEGER, allowNull: false },
-
-			itemId: { type: Sequelize.INTEGER, allowNull: false },
-
-			stock: { type: Sequelize.INTEGER, allowNull: false },
-
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,

@@ -9,7 +9,13 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			Companies.hasMany(models.User, {
+			Companies.hasOne(models.User, {
+				foreignKey: {
+					name: 'companyId',
+				},
+			});
+
+			Companies.hasMany(models.Stock, {
 				foreignKey: {
 					name: 'companyId',
 				},
@@ -18,7 +24,19 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Companies.init(
 		{
-			name: { type: DataTypes.STRING, allowNull: false },
+			id: {
+				type: DataTypes.STRING,
+				primaryKey: true,
+				allowNull: false,
+				unique: {
+					args: true,
+					msg: 'Please enter unique id',
+				},
+			},
+			name: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
 		},
 		{
 			sequelize,

@@ -1,0 +1,1196 @@
+{
+	"info": {
+		"_postman_id": "461aa1b5-e2d5-4289-a04d-b74060dc6281",
+		"name": "Team 3 - Stock Management",
+		"description": "Team 3 - Final BE - Stock Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22814931",
+		"_collection_link": "https://universal-crescent-735802.postman.co/workspace/d92a922d-1886-49b5-8f6b-2bc2288c7622/collection/22814931-461aa1b5-e2d5-4289-a04d-b74060dc6281?action=share&source=collection_link&creator=22814931"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "getUser",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2000/api/v1/users/1887bdbf-2299-40b9-a4e8-2c7a9257293d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"1887bdbf-2299-40b9-a4e8-2c7a9257293d"
+									]
+								},
+								"description": "get user by id"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:2000/api/v1/users/11887bdbf-2299-40b9-a4e8-2c7a9257293d",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"11887bdbf-2299-40b9-a4e8-2c7a9257293d"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"user data retrieved successfully\",\n    \"data\": {\n        \"id\": \"1887bdbf-2299-40b9-a4e8-2c7a9257293d\",\n        \"name\": \"superadmin\",\n        \"role\": \"superadmin\",\n        \"companyId\": \"company-1\",\n        \"imageUrl\": [],\n        \"imageId\": [],\n        \"createdAt\": \"2024-04-20T06:56:01.433Z\",\n        \"updatedAt\": \"2024-04-20T06:56:01.433Z\"\n    }\n}"
+								},
+								{
+									"name": "not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:2000/api/v1/users/1887bdbf-2299-40b9-a4e8-2c7a9257293d",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"1887bdbf-2299-40b9-a4e8-2c7a9257293d"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 404,\n    \"message\": \"user not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "getUsers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2000/api/v1/users?page=1&limit=2&search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "search",
+											"value": null
+										}
+									]
+								},
+								"description": "get all users"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:2000/api/v1/users?page=1&limit=2&search",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"users"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "2"
+												},
+												{
+													"key": "search",
+													"value": null
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"all user data retrieved successfully\",\n    \"pagination\": {\n        \"totalItems\": 1,\n        \"totalPages\": 1,\n        \"currentPage\": 1,\n        \"pageItems\": 1,\n        \"nextPage\": null,\n        \"prevPage\": null\n    },\n    \"data\": [\n        {\n            \"id\": \"1887bdbf-2299-40b9-a4e8-2c7a9257293d\",\n            \"name\": \"superadmin\",\n            \"role\": \"superadmin\",\n            \"companyId\": \"company-1\",\n            \"imageUrl\": [],\n            \"imageId\": [],\n            \"createdAt\": \"2024-04-20T06:56:01.433Z\",\n            \"updatedAt\": \"2024-04-20T06:56:01.433Z\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "superadmin",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "superadmin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "superadmin",
+											"type": "text"
+										},
+										{
+											"key": "images",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "companyId",
+											"value": "company-1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"user created successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"c4ee5d71-3051-430e-b214-ce794507ffe6\",\n            \"name\": \"superadmin\",\n            \"role\": \"superadmin\",\n            \"companyId\": \"company-1\",\n            \"imageUrl\": [],\n            \"imageId\": [],\n            \"createdAt\": \"2024-04-20T07:48:28.981Z\",\n            \"updatedAt\": \"2024-04-20T07:48:28.981Z\"\n        },\n        \"auth\": {\n            \"id\": \"54bc8518-a640-4884-9dd6-f9c199250cef\",\n            \"userId\": \"c4ee5d71-3051-430e-b214-ce794507ffe6\",\n            \"email\": \"superadmin@gmail.com\",\n            \"createdAt\": \"2024-04-20T07:48:28.987Z\",\n            \"updatedAt\": \"2024-04-20T07:48:28.987Z\"\n        }\n    }\n}"
+								},
+								{
+									"name": "unique email",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 500,\n    \"message\": \"Please enter unique email\"\n}"
+								},
+								{
+									"name": "invalid input",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin2",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin2@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": "/C:/Users/LENOVO/Downloads/libraryJava/Template HTML/Bookshelf API Test.postman_environment.json"
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 500,\n    \"message\": \"Only image/jpg, image/jpeg, image/png are allowed\"\n}"
+								}
+							]
+						},
+						{
+							"name": "update user",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "si superadmin",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "superadmin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "superadmin",
+											"type": "text"
+										},
+										{
+											"key": "images",
+											"type": "file",
+											"src": "/C:/Users/LENOVO/Pictures/Blog saya/3.png"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "companyId",
+											"value": "company-1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/update/c4ee5d71-3051-430e-b214-ce794507ffe6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"update",
+										"c4ee5d71-3051-430e-b214-ce794507ffe6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"user updated successfully\",\n    \"data\": {\n        \"name\": \"si superadmin\",\n        \"email\": \"superadmin@gmail.com\",\n        \"role\": \"superadmin\",\n        \"images\": {\n            \"imagesUrl\": [\n                \"https://ik.imagekit.io/vieryn/user-1713599651445_goBNbxvCw.png\"\n            ],\n            \"imagesId\": [\n                \"662374a588c257da33e3d561\"\n            ]\n        },\n        \"companyId\": \"company-1\"\n    }\n}"
+								},
+								{
+									"name": "unique email",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 500,\n    \"message\": \"Please enter unique email\"\n}"
+								},
+								{
+									"name": "invalid input",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "superadmin2",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin2@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": "/C:/Users/LENOVO/Downloads/libraryJava/Template HTML/Bookshelf API Test.postman_environment.json"
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"register"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 500,\n    \"message\": \"Only image/jpg, image/jpeg, image/png are allowed\"\n}"
+								},
+								{
+									"name": "not found",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzYwNTcwLCJleHAiOjE3MTMzNjQxNzB9.ayp8KKV8L2Y45Z-RR1wrEqM14XoAitLn20XGaJhgwNA",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "si superadmin",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "superadmin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "role",
+													"value": "superadmin",
+													"type": "text"
+												},
+												{
+													"key": "images",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "password",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "confirmPassword",
+													"value": "password",
+													"type": "text"
+												},
+												{
+													"key": "companyId",
+													"value": "company-1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/update/1887bdbf-2299-40b9-a4e8-2c7a9257293d",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"update",
+												"1887bdbf-2299-40b9-a4e8-2c7a9257293d"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 404,\n    \"message\": \"user not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"superadmin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"login"
+									]
+								},
+								"description": "create new user"
+							},
+							"response": [
+								{
+									"name": "login success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"Login Success\",\n    \"_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJ2aWVyeSAiLCJyb2xlIjoic3VwZXJhZG1pbiIsImVtYWlsIjoic3VwZXJhZG1pbjJAZ21haWwuY29tIiwiY29tcGFueUlkIjoxLCJpYXQiOjE3MTM1MzE0MzgsImV4cCI6MTcxMzUzNTAzOH0.QVL0Y1bdn5kZg6ZYH7aTBYRSSZYP181NqHbNjkikGfk\"\n}"
+								},
+								{
+									"name": "login failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": {\n        \"status\": 400,\n        \"message\": \"Wrong Password or user not found\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "me",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4ODdiZGJmLTIyOTktNDBiOS1hNGU4LTJjN2E5MjU3MjkzZCIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJzdXBlcmFkbWluIiwiZW1haWwiOiJzdXBlcmFkbWluQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6ImNvbXBhbnktMSIsImlhdCI6MTcxMzU5NjIzMSwiZXhwIjoxNzEzNTk5ODMxfQ.nnlhUEMQiNisdfVSe-0Hd_EQEL6lieAuXplMOR4EkBs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1YjBjYTcwLWQ4N2YtNDAwOS04YzVmLWU4N2ZjMjg3NjE4ZCIsInVzZXJuYW1lIjoic2kgYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiMzk5NzU2OGQtMWMxZi00ZGE5LTkwYTgtMzUyMGUyN2E0OWJhIiwiaWF0IjoxNzEzMzI2NzM2LCJleHAiOjE3MTMzMzAzMzZ9.IOB4RT-ccaeR88T0rPWBS7WuAqGwuzBdxSmrhUBIUOY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"gw@mail.com\",\r\n    \"password\": \"pwgwpwgw\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"me"
+									]
+								},
+								"description": "create new user"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMjBjZDRlLWQwODYtNDEzYS1iYzVmLTIyNjM4NTE1ZTg2OSIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJzdXBlcmFkbWluIiwiZW1haWwiOiJzdXBlcmFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiZTE5MGVhMmUtYzEyNS00OTdjLWE0ZjItZWFiNDBkNjM5ZDYzIiwiaWF0IjoxNzEzMDE5MjA3LCJleHAiOjE3MTMwMjI4MDd9.9YA2qzpjFWTXGFFdzbHEa2PhZk9t7zwq3lqhEnb0PBg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/delete/34ec75be-51df-4fec-8bc4-0daf872a1a9b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"delete",
+										"34ec75be-51df-4fec-8bc4-0daf872a1a9b"
+									]
+								},
+								"description": "create new user"
+							},
+							"response": [
+								{
+									"name": "not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMjBjZDRlLWQwODYtNDEzYS1iYzVmLTIyNjM4NTE1ZTg2OSIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJzdXBlcmFkbWluIiwiZW1haWwiOiJzdXBlcmFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiZTE5MGVhMmUtYzEyNS00OTdjLWE0ZjItZWFiNDBkNjM5ZDYzIiwiaWF0IjoxNzEzMDE5MjA3LCJleHAiOjE3MTMwMjI4MDd9.9YA2qzpjFWTXGFFdzbHEa2PhZk9t7zwq3lqhEnb0PBg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/delete/6bca9288-5045-43b7-8bd7-720a128c8ad6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"delete",
+												"6bca9288-5045-43b7-8bd7-720a128c8ad6"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 404,\n    \"message\": \"user not found\"\n}"
+								},
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMjBjZDRlLWQwODYtNDEzYS1iYzVmLTIyNjM4NTE1ZTg2OSIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJzdXBlcmFkbWluIiwiZW1haWwiOiJzdXBlcmFkbWluQG1haWwuY29tIiwiY29tcGFueUlkIjoiZTE5MGVhMmUtYzEyNS00OTdjLWE0ZjItZWFiNDBkNjM5ZDYzIiwiaWF0IjoxNzEzMDE5MjA3LCJleHAiOjE3MTMwMjI4MDd9.9YA2qzpjFWTXGFFdzbHEa2PhZk9t7zwq3lqhEnb0PBg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:2000/api/v1/delete/34ec75be-51df-4fec-8bc4-0daf872a1a9b",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "2000",
+											"path": [
+												"api",
+												"v1",
+												"delete",
+												"34ec75be-51df-4fec-8bc4-0daf872a1a9b"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"message\": \"user deleted successfully\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "items",
+					"item": [
+						{
+							"name": "get all items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2000/api/v1/items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create new item",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"item1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2000/api/v1/items/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2000",
+									"path": [
+										"api",
+										"v1",
+										"items",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "REST API - EndPoints"
+		},
+		{
+			"name": "WEB PAGE",
+			"item": [],
+			"description": "Web Pages - EndPoints"
+		}
+	]
+}

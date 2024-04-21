@@ -9,13 +9,41 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
+			Stock.belongsTo(models.Item, {
+				foreignKey: {
+					name: 'itemId',
+				},
+			});
+			Stock.belongsTo(models.Companies, {
+				foreignKey: {
+					name: 'companyId',
+				},
+			});
 		}
 	}
 	Stock.init(
 		{
-			companyId: DataTypes.INTEGER,
-			itemId: DataTypes.STRING,
-			stock: DataTypes.INTEGER,
+			id: {
+				type: DataTypes.STRING,
+				primaryKey: true,
+				allowNull: false,
+				unique: {
+					args: true,
+					msg: 'Please enter unique id',
+				},
+			},
+			companyId: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			itemId: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			stock: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
 		},
 		{
 			sequelize,

@@ -22,19 +22,12 @@ app.use(logger('dev'));
 
 app.use(router);
 
-//* Catch HTTP 404
-app.use((req, res, next) => {
-	next(createHttpError(404));
-});
-
 //* Error Handler
 app.use((err, req, res, next) => {
 	res.status(err.status || 500);
 	res.json({
-		error: {
-			status: err.status || 500,
-			message: err.message,
-		},
+		status: err.status || 500,
+		message: err.message,
 	});
 });
 
