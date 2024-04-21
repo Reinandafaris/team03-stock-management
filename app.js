@@ -33,9 +33,11 @@ app.use((err, req, res, next) => {
 
 app.use((req, res) => {
 	const url = req.url;
+	const method = req.method;
 	res.status(404).json({
 		status: false,
-		url: url,
+		method,
+		url,
 		message: 'Not Found!',
 	});
 });
