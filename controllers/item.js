@@ -69,7 +69,7 @@ const createItem = async (req, res, next) => {
 
     res.status(201).json({
       status: true,
-      message: "create user successfully!",
+      message: "create item successfully!",
       data: {
         item,
       },
@@ -96,11 +96,11 @@ const updateItem = async (req, res, next) => {
       imagesId: item.imageId,
     };
 
-    // if (files.length !== 0) {
-    //   const { imagesUrl, imagesId } = await handleUploadImage(files);
-    //   images.imagesUrl = imagesUrl;
-    //   images.imagesId = imagesId;
-    // }
+    if (files.length !== 0) {
+      const { imagesUrl, imagesId } = await handleUploadImage(files);
+      images.imagesUrl = imagesUrl;
+      images.imagesId = imagesId;
+    }
 
     const transaction = await sequelize.transaction();
     try {
