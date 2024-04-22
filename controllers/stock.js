@@ -4,6 +4,11 @@ const { randomUUID } = require('crypto');
 
 const getAllStock = async (req, res, next) => {
 	try {
+		const search = req.query.search || '';
+		const page = parseInt(req.query.page) || 1;
+		const limit = parseInt(req.query.limit) || 10;
+		const offset = (page - 1) * limit;
+
 		const { count, rows } = await CategoryItems.findAndCountAll({
 			where: {
 				name: {
@@ -14,11 +19,6 @@ const getAllStock = async (req, res, next) => {
 			offset,
 			limit,
 		});
-
-		const search = req.query.search || '';
-		const page = parseInt(req.query.page) || 1;
-		const limit = parseInt(req.query.limit) || 10;
-		const offset = (page - 1) * limit;
 
 		res.status(200).json({
 			status: true,
@@ -59,6 +59,7 @@ const createStock = async (req, res, next) => {
 		next(createHttpError(500, { message: error.message }));
 	}
 };
+
 const updateStock = async (req, res, next) => {
 	const { companyId, itemId, stock } = req.body;
 	try {
