@@ -64,12 +64,31 @@ module.exports = {
 			};
 		});
 
-		return queryInterface.bulkInsert('Auths', auth_data);
+		const usersAuth = await queryInterface.bulkInsert('Auths', auth_data, {
+            returning: true,
+        });
+
+        //! CATEGORY ITEMS
+        const categoryItems = [];
+
+        for (let i = 1; i <= 3; i++) {
+            categoryItems.push({
+                id: randomUUID(),
+                name: `category 0${i}`,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            });
+        }
+
+        const categories = await queryInterface.bulkInsert('CategoryItems', categoryItems, {
+            returning: true,
+        });
 	},
 
 	async down(queryInterface, Sequelize) {
 		await queryInterface.bulkDelete('Companies', null, { returning: true });
 		await queryInterface.bulkDelete('Users', null, { returning: true });
 		await queryInterface.bulkDelete('Auths', null, { returning: true });
+		await queryInterface.bulkDelete('CategoryItems', null, { returning: true });
 	},
 };

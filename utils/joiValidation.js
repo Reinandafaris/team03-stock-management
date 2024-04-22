@@ -44,6 +44,15 @@ const onlyAdmin = Joi.object({
   }),
 });
 
+//! Category Item
+const categoryItemSchema = Joi.object({
+  name: Joi.string().max(30).required(),
+});
+
+const updateCategoryItemSchema = Joi.object({
+  name:Joi.string().max(30),
+})
+
 //companies
 const companySchema = Joi.object({
   name: Joi.string().max(20).required(),
@@ -60,4 +69,6 @@ module.exports = {
   onlyAdmin,
   companySchema,
   updateCompanySchema,
+  categoryItemSchema,
+  updateCategoryItemSchema
 };

@@ -1,9 +1,14 @@
 const createHttpError = require('http-errors');
 const { CategoryItems } = require('../models');
 const { randomUUID } = require('crypto');
+const { Op, Sequelize } = require('sequelize');
 
 const getAllCategory = async (req, res, next) => {
 	try {
+		const search = req.query.search || '';
+		const page = parseInt(req.query.page) || 1;
+		const limit = parseInt(req.query.limit) || 10;
+		const offset = (page - 1) * limit;
 		const { count, rows } = await CategoryItems.findAndCountAll({
 			where: {
 				name: {
@@ -14,11 +19,6 @@ const getAllCategory = async (req, res, next) => {
 			offset,
 			limit,
 		});
-
-		const search = req.query.search || '';
-		const page = parseInt(req.query.page) || 1;
-		const limit = parseInt(req.query.limit) || 10;
-		const offset = (page - 1) * limit;
 
 		res.status(200).json({
 			status: true,
@@ -59,14 +59,19 @@ const createCategory = async (req, res, next) => {
 };
 
 const updateCategory = async (req, res, next) => {
+	const {name} = req.body;
 	try {
-		const category = CategoryItems.findByPk(req.params.id);
+		const id = req.params.id;
+		const category = await CategoryItems.findByPk(id);
 
 		if (!category) {
 			return next(createHttpError(404, 'category item not found'));
 		}
 
-		await CategoryItems.update(req.body, {
+		await CategoryItems.update({
+			name,
+			},
+			{
 			where: {
 				id: req.params.id,
 			},
@@ -86,7 +91,11 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
 	try {
-		const category = CategoryItems.findByPk(req.params.id);
+		const category = await CategoryItems.findOne({
+			where: {
+				id: req.params.id,
+			},
+		});
 
 		if (!category) {
 			return next(createHttpError(404, 'category item not found'));
