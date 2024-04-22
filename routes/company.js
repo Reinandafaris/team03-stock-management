@@ -1,20 +1,17 @@
-const express = require("express");
-const {
-  createCompany,
-  deleteCompany,
-  updateCompany,
-  getAllCompany,
-} = require("../controllers/company");
-const Validator = require("../middlewares/validator");
-const {
-  companySchema,
-  updateCompanySchema,
-} = require("../utils/joiValidation");
+const express = require('express');
 const router = express.Router();
 
-router.get("/", getAllCompany);
-router.post("/create", Validator(companySchema), createCompany);
-router.patch("/update/:id", Validator(updateCompanySchema), updateCompany);
-router.delete("/delete/:id", deleteCompany);
+const { createCompany, deleteCompany, updateCompany, getAllCompany } = require('../controllers/company');
+
+const Validator = require('../middlewares/validator');
+const Authenticate = require('../middlewares/authentication');
+const CheckRole = require('../middlewares/checkRole');
+
+const { companySchema, updateCompanySchema } = require('../utils/joiValidation');
+
+router.get('/', Authenticate, CheckRole('superadmin'), getAllCompany);
+router.post('/create', Authenticate, CheckRole('superadmin'), Validator(companySchema), createCompany);
+router.patch('/update/:id', Authenticate, CheckRole('superadmin'), Validator(updateCompanySchema), updateCompany);
+router.delete('/delete/:id', Authenticate, CheckRole('superadmin'), deleteCompany);
 
 module.exports = router;
