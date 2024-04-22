@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
 	async up(queryInterface, Sequelize) {
 		//! COMPANIES
+
 		const companyData = [];
 
 		for (let i = 1; i <= 3; i++) {
@@ -65,24 +66,24 @@ module.exports = {
 		});
 
 		const usersAuth = await queryInterface.bulkInsert('Auths', auth_data, {
-            returning: true,
-        });
+			returning: true,
+		});
 
-        //! CATEGORY ITEMS
-        const categoryItems = [];
+		//! CATEGORY ITEMS
+		const categoryItems = [];
 
-        for (let i = 1; i <= 3; i++) {
-            categoryItems.push({
-                id: randomUUID(),
-                name: `category 0${i}`,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-            });
-        }
+		for (let i = 1; i <= 3; i++) {
+			categoryItems.push({
+				id: randomUUID(),
+				name: `category 0${i}`,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			});
+		}
 
-        const categories = await queryInterface.bulkInsert('CategoryItems', categoryItems, {
-            returning: true,
-        });
+		const categories = await queryInterface.bulkInsert('CategoryItems', categoryItems, {
+			returning: true,
+		});
 	},
 
 	async down(queryInterface, Sequelize) {
