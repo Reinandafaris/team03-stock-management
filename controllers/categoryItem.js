@@ -9,6 +9,7 @@ const getAllCategory = async (req, res, next) => {
 		const page = parseInt(req.query.page) || 1;
 		const limit = parseInt(req.query.limit) || 10;
 		const offset = (page - 1) * limit;
+
 		const { count, rows } = await CategoryItems.findAndCountAll({
 			where: {
 				name: {
@@ -23,8 +24,8 @@ const getAllCategory = async (req, res, next) => {
 		res.status(200).json({
 			status: true,
 			message: 'all category item data retrieved successfully',
+			totalItems: count,
 			pagination: {
-				totalItems: count,
 				totalPages: Math.ceil(count / limit),
 				currentPage: +page,
 				pageItems: rows.length,
@@ -59,7 +60,7 @@ const createCategory = async (req, res, next) => {
 };
 
 const updateCategory = async (req, res, next) => {
-	const {name} = req.body;
+	const { name } = req.body;
 	try {
 		const id = req.params.id;
 		const category = await CategoryItems.findByPk(id);
@@ -68,14 +69,16 @@ const updateCategory = async (req, res, next) => {
 			return next(createHttpError(404, 'category item not found'));
 		}
 
-		await CategoryItems.update({
-			name,
+		await CategoryItems.update(
+			{
+				name,
 			},
 			{
-			where: {
-				id: req.params.id,
-			},
-		});
+				where: {
+					id: req.params.id,
+				},
+			}
+		);
 
 		res.status(200).json({
 			status: true,

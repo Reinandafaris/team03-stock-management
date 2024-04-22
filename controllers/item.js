@@ -24,9 +24,9 @@ const getAllItem = async (req, res) => {
 
 		res.status(200).json({
 			status: true,
-			message: 'get all items data success',
+			message: 'all item data retrieved successfully',
+			totalItems: count,
 			pagination: {
-				totalItems: count,
 				totalPages: Math.ceil(count / limit),
 				currentPage: +page,
 				pageItems: rows.length,

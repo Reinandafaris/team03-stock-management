@@ -197,8 +197,8 @@ const getAllUser = async (req, res) => {
 		res.status(200).json({
 			status: true,
 			message: 'all user data retrieved successfully',
+			totalItems: count,
 			pagination: {
-				totalItems: count,
 				totalPages: Math.ceil(count / limit),
 				currentPage: +page,
 				pageItems: rows.length,
