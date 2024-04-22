@@ -84,12 +84,64 @@ module.exports = {
 		const categories = await queryInterface.bulkInsert('CategoryItems', categoryItems, {
 			returning: true,
 		});
+
+		//! ITEMS
+		let categoryId = categories.map((category) => {
+			return category.id;
+		});
+
+		let items_data = [];
+
+		for (let i = 0; i < 100; i++) {
+			items_data.push({
+				id: randomUUID(),
+				categoryId: categoryId[Math.floor(Math.random() * categoryId.length)],
+				name: `item ${i}`,
+				imageUrl: '{}',
+				imageId: '{}',
+				stock: 10,
+				price: `${i + 1}000`,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			});
+		}
+
+		const items = await queryInterface.bulkInsert('Items', items_data, {
+			returning: true,
+		});
+
+		//! STOCKS
+		let stocks_data = [];
+		let companiesId = companies.map((company) => {
+			return company.id;
+		});
+
+		let itemsId = items.map((item) => {
+			return item.id;
+		});
+
+		for (let i = 0; i < 100; i++) {
+			stocks_data.push({
+				id: randomUUID(),
+				companyId: companiesId[Math.floor(Math.random() * companiesId.length)],
+				itemId: itemsId[Math.floor(Math.random() * itemsId.length)],
+				stock: 5,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			});
+		}
+
+		const stocks = await queryInterface.bulkInsert('Stocks', stocks_data, {
+			returning: true,
+		});
 	},
 
 	async down(queryInterface, Sequelize) {
-		await queryInterface.bulkDelete('Companies', null, { returning: true });
-		await queryInterface.bulkDelete('Users', null, { returning: true });
 		await queryInterface.bulkDelete('Auths', null, { returning: true });
+		await queryInterface.bulkDelete('Users', null, { returning: true });
+		await queryInterface.bulkDelete('Companies', null, { returning: true });
 		await queryInterface.bulkDelete('CategoryItems', null, { returning: true });
+		await queryInterface.bulkDelete('Items', null, { returning: true });
+		await queryInterface.bulkDelete('Stocks', null, { returning: true });
 	},
 };

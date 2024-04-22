@@ -1,5 +1,6 @@
 const createHttpError = require('http-errors');
 const { Stock } = require('../models');
+const { Op, Sequelize } = require('sequelize');
 const { randomUUID } = require('crypto');
 
 const getAllStock = async (req, res, next) => {
@@ -9,12 +10,13 @@ const getAllStock = async (req, res, next) => {
 		const limit = parseInt(req.query.limit) || 10;
 		const offset = (page - 1) * limit;
 
-		const { count, rows } = await CategoryItems.findAndCountAll({
+		const { count, rows } = await Stock.findAndCountAll({
 			where: {
-				name: {
+				id: {
 					[Op.iLike]: `%${search}%`,
 				},
 			},
+			include: ['Company', 'Item'],
 			order: [[Sequelize.col('stock'), 'ASC']],
 			offset,
 			limit,

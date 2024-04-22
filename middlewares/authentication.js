@@ -19,6 +19,9 @@ module.exports = async (req, res, next) => {
 		});
 
 		req.user = user;
+		if (req.user === null) {
+			return next(createHttpError(401, 'Unauthorized, please re-login'));
+		}
 		next();
 	} catch (error) {
 		next(createHttpError(500, { message: error.message }));

@@ -4,7 +4,7 @@ const { randomUUID } = require('crypto');
 const createHttpError = require('http-errors');
 const handleUploadImage = require('../utils/handleUpload');
 
-const getAllItem = async (req, res) => {
+const getAllItem = async (req, res, next) => {
 	try {
 		const search = req.query.search || '';
 		const page = parseInt(req.query.page) || 1;
@@ -17,6 +17,7 @@ const getAllItem = async (req, res) => {
 					[Op.iLike]: `%${search}%`,
 				},
 			},
+			include: ['CategoryItem'],
 			order: [[Sequelize.col('stock'), 'ASC']],
 			offset,
 			limit,
