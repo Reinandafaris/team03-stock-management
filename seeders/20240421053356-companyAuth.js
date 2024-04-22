@@ -81,18 +81,15 @@ module.exports = {
 			});
 		}
 
-		const categories = await queryInterface.bulkInsert('Companies', categoryItems, {
+		const categories = await queryInterface.bulkInsert('CategoryItems', categoryItems, {
 			returning: true,
 		});
-
-		//! ITEMS
-
-		//! STOCKS
 	},
 
 	async down(queryInterface, Sequelize) {
 		await queryInterface.bulkDelete('Companies', null, { returning: true });
 		await queryInterface.bulkDelete('Users', null, { returning: true });
 		await queryInterface.bulkDelete('Auths', null, { returning: true });
+		await queryInterface.bulkDelete('CategoryItems', null, { returning: true });
 	},
 };
