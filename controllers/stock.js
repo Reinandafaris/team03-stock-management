@@ -22,9 +22,9 @@ const getAllStock = async (req, res, next) => {
 
 		res.status(200).json({
 			status: true,
-			message: 'get all stock successfully!',
+			message: 'all stock data retrieved successfully',
+			totalItems: count,
 			pagination: {
-				totalItems: count,
 				totalPages: Math.ceil(count / limit),
 				currentPage: +page,
 				pageItems: rows.length,
