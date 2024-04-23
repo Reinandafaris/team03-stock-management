@@ -13,13 +13,13 @@ const { onlySuperAdmin, onlyAdmin, onlySuperAdminUpdate } = require('../utils/jo
 router.get('/me', Authenticate, getUserLoggedIn);
 router.post('/login', login);
 // superadmin
-router.get('/', Authenticate, getAllUser);
-router.get('/:id', Authenticate, getUser);
+router.get('/', Authenticate, CheckRole('superadmin', 'admin'), getAllUser);
+router.get('/:id', Authenticate, CheckRole('superadmin', 'admin'), getUser);
 router.post('/sudo/register', Authenticate, CheckRole('superadmin'), Upload.array('images'), Validator(onlySuperAdmin), register);
 router.patch('/sudo/update/:id', Authenticate, CheckRole('superadmin'), Upload.array('images'), Validator(onlySuperAdminUpdate), updateUser);
 router.delete('/sudo/delete/:id', Authenticate, CheckRole('superadmin'), deletedUser);
 // admin
-router.post('/register', Authenticate, CheckRole('superadmin'), Upload.array('images'), Validator(onlyAdmin), register);
-router.delete('/delete/:id', Authenticate, CheckRole('superadmin'), deletedUser);
+router.post('/register', Authenticate, CheckRole('superadmin', 'admin'), Upload.array('images'), Validator(onlyAdmin), register);
+router.delete('/delete/:id', Authenticate, CheckRole('superadmin', 'admin'), deletedUser);
 
 module.exports = router;

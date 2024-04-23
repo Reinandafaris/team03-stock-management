@@ -176,19 +176,25 @@ const getUserLoggedIn = async (req, res, next) => {
 	}
 };
 
-const getAllUser = async (req, res) => {
+const getAllUser = async (req, res, next) => {
 	try {
 		const search = req.query.search || '';
 		const page = parseInt(req.query.page) || 1;
 		const limit = parseInt(req.query.limit) || 10;
 		const offset = (page - 1) * limit;
 
-		const { count, rows } = await User.findAndCountAll({
-			where: {
-				name: {
-					[Op.iLike]: `%${search}%`,
-				},
+		const where = {
+			name: {
+				[Op.iLike]: `%${search}%`,
 			},
+		};
+
+		if (req.user.companyId !== null) {
+			where.companyId = req.user.companyId;
+		}
+
+		const { count, rows } = await User.findAndCountAll({
+			where,
 			order: [[Sequelize.col('role'), 'ASC']],
 			offset,
 			limit,
@@ -218,6 +224,11 @@ const getUser = async (req, res, next) => {
 
 		if (!user) {
 			return next(createHttpError(404, 'user not found'));
+		}
+		if (req.user.companyId !== null) {
+			if (req.user.companyId != user.companyId) {
+				return next(createHttpError(403, 'you does not have access permissions for this data'));
+			}
 		}
 
 		res.status(200).json({
@@ -327,10 +338,14 @@ const updateUser = async (req, res, next) => {
 const deletedUser = async (req, res, next) => {
 	try {
 		const userId = req.params.id;
+
 		const checkUser = await User.findByPk(userId);
 		if (!checkUser) {
 			return next(createHttpError(404, 'user not found'));
+		} else if (checkUser.companyId !== req.user.companyId && req.user.role === 'admin') {
+			return next(createHttpError(403, 'you does not have access permissions for this data'));
 		}
+
 		const user = await User.findOne({
 			where: {
 				id: userId,
