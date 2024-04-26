@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const router = require('./routes');
+const apiRouter = require('./routes');
+const webRouter = require('./routes/webpages');
 const createHttpError = require('http-errors');
 
 //! config
@@ -20,7 +21,8 @@ app.use(cors());
 app.use(express.json());
 app.use(logger('dev'));
 
-app.use(router);
+app.use('/api/v1', apiRouter);
+app.use('/', webRouter);
 
 //* Error Handler
 app.use((err, req, res, next) => {
